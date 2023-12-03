@@ -1,26 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TickerPage from './components/pages/TickerPage';
+import { TickerContext } from './context/TickerContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [tickName, setTickName] = useState('PER_DAY');
+	return (
+		<TickerContext.Provider value={{ tickName, setTickName }}>
+			<TickerPage />
+		</TickerContext.Provider>
+	);
 }
 
 export default App;
