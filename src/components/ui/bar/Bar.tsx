@@ -9,6 +9,7 @@ const Bar = () => {
 		<div className={classes.bar}>
 			<Link to='/ticker'>Ticker</Link>
 			<Link to='/'>Home</Link>
+			<Link to='/recomended'>Recomended</Link>
 		</div>
 	);
 };
