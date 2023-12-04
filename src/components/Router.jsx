@@ -1,21 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router';
-import { Redirect, Switch, createBrowserRouter } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import TickerPage from './pages/TickerPage';
 import WelcomePage from './pages/WelcomePage';
 
-const Router = createBrowserRouter([
-	{
-		path: '/',
-		element: <WelcomePage />,
-		children: [
-			{
-				path: 'ticker',
-				element: <TickerPage />,
-			},
-		],
-	},
-]);
+const Router = () => {
+	return (
+		<Routes>
+			<Route path='/' Component={WelcomePage} />
+			<Route path='/ticker' Component={TickerPage} />
+		</Routes>
+	);
+};
 
 export default Router;

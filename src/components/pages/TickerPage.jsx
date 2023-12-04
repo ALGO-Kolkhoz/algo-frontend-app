@@ -98,6 +98,18 @@ const TickerPage = () => {
 			animation: true,
 			type: 'candlestick',
 		},
+		// plotOptions: {
+		// 	candlestick: {
+		// 		color: 'transparent',
+		// 		upColor: 'transparent',
+		// 		lineColor: 'rgba(255, 255, 255, 0.5)',
+		// 		upLineColor: 'rgba(255, 255, 255, 0.5)',
+		// 		shadow: {
+		// 			color: 'rgba(255, 255, 255, 0.2)',
+		// 			width: 20,
+		// 		},
+		// 	},
+		// },
 	};
 
 	return (
