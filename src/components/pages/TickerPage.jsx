@@ -1,6 +1,9 @@
 import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
+import darkUnica from 'highcharts/themes/dark-unica';
+
+darkUnica(Highcharts);
 
 const getRandomValue = (min, max) => {
 	return Math.random() * (max - min) + min;
