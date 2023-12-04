@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
-import { Routes } from 'react-router-dom';
+import { Routes, Route, Redirect } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import TickerPage from './pages/TickerPage';
 import WelcomePage from './pages/WelcomePage';
@@ -8,8 +7,8 @@ import WelcomePage from './pages/WelcomePage';
 const Router = () => {
 	return (
 		<Routes>
-			<Route path='/' Component={WelcomePage} />
-			<Route path='/ticker' Component={TickerPage} />
+			<Route id={nanoid()} path='/' Component={WelcomePage} />
+			<Route id={nanoid()} path='/ticker' Component={TickerPage} />
 		</Routes>
 	);
 };

@@ -3,6 +3,62 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 
+Highcharts.setOptions({
+	lang: {
+		loading: 'Подождите...',
+		months: [
+			'Январь',
+			'Февраль',
+			'Март',
+			'Апрель',
+			'Май',
+			'Июнь',
+			'Июль',
+			'Август',
+			'Сентябрь',
+			'Октябрь',
+			'Ноябрь',
+			'Декабрь',
+		],
+		weekdays: [
+			'Воскресенье',
+			'Понедельник',
+			'Вторник',
+			'Среда',
+			'Четверг',
+			'Пятница',
+			'Суббота',
+		],
+		shortMonths: [
+			'Янв',
+			'Фев',
+			'Мар',
+			'Апр',
+			'Май',
+			'Июн',
+			'Июл',
+			'Авг',
+			'Сен',
+			'Окт',
+			'Ноя',
+			'Дек',
+		],
+		exportButtonTitle: 'Экспорт',
+		printButtonTitle: 'Печать',
+		rangeSelectorFrom: 'С',
+		rangeSelectorTo: 'По',
+		rangeSelectorZoom: 'Период',
+		downloadPNG: 'Скачать изображение PNG',
+		downloadJPEG: 'Скачать изображение JPEG',
+		downloadPDF: 'Скачать документ PDF',
+		downloadSVG: 'Скачать изображение SVG',
+		// resetZoom: "Сбросить",
+		// resetZoomTitle: "Сброс",
+		// thousandsSep: " ",
+		// decimalPoint: ','
+	},
+});
+
 darkUnica(Highcharts);
 
 const getRandomValue = (min, max) => {
@@ -48,7 +104,24 @@ const TickerPage = () => {
 			text: 'Candlestick Chart',
 		},
 		rangeSelector: {
-			selected: 1,
+			buttons: [
+				{
+					count: 1,
+					type: 'month',
+					text: '1M',
+				},
+				{
+					count: 5,
+					type: 'month',
+					text: '5M',
+				},
+				{
+					type: 'all',
+					text: 'Alles',
+				},
+			],
+			inputEnabled: false,
+			selected: 0,
 		},
 		xAxis: {
 			type: 'datetime',
@@ -98,18 +171,6 @@ const TickerPage = () => {
 			animation: true,
 			type: 'candlestick',
 		},
-		// plotOptions: {
-		// 	candlestick: {
-		// 		color: 'transparent',
-		// 		upColor: 'transparent',
-		// 		lineColor: 'rgba(255, 255, 255, 0.5)',
-		// 		upLineColor: 'rgba(255, 255, 255, 0.5)',
-		// 		shadow: {
-		// 			color: 'rgba(255, 255, 255, 0.2)',
-		// 			width: 20,
-		// 		},
-		// 	},
-		// },
 	};
 
 	return (
