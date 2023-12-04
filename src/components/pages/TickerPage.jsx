@@ -3,10 +3,6 @@ import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
-// import 'highcharts/modules/accessibility';
-// require('highcharts/modules/stock')(Highcharts);
-
-require('highcharts/modules/data')(Highcharts);
 
 Highcharts.setOptions({
 	lang: {
@@ -184,6 +180,9 @@ const TickerPage = () => {
 				data: generateRandomLinearData(),
 				color: 'rgb(255, 204, 255)',
 				showInNavigator: false,
+				marker: {
+					enabled: false,
+				},
 			},
 			{
 				type: 'line',
@@ -191,6 +190,9 @@ const TickerPage = () => {
 				data: generateRandomLinearData(),
 				color: 'blue', // Set the color for this series
 				showInNavigator: false,
+				marker: {
+					enabled: false,
+				},
 			},
 		],
 	};
