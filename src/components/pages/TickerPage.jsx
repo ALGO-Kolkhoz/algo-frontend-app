@@ -1,3 +1,4 @@
+import 'highcharts/modules/accessibility';
 import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
@@ -52,10 +53,10 @@ Highcharts.setOptions({
 		downloadJPEG: 'Скачать изображение JPEG',
 		downloadPDF: 'Скачать документ PDF',
 		downloadSVG: 'Скачать изображение SVG',
-		// resetZoom: "Сбросить",
-		// resetZoomTitle: "Сброс",
-		// thousandsSep: " ",
-		// decimalPoint: ','
+		resetZoom: 'Сбросить',
+		resetZoomTitle: 'Сброс',
+		thousandsSep: ' ',
+		decimalPoint: ',',
 	},
 });
 
@@ -86,14 +87,12 @@ const generateMockData = () => {
 const generateRandomLinearData = () => {
 	const data = [];
 
-	for (let i = 2; i < 100; i++) {
+	for (let i = 0; i < 100; i++) {
 		data.push([
 			generateMockData()[i][0], // Use the same timestamp as the candlestick data
 			getRandomValue(80, 120), // Random linear data
 		]);
 	}
-
-	const lastDate = new Date(generateMockData()[data.length][0]);
 
 	return data;
 };
@@ -103,28 +102,24 @@ const TickerPage = () => {
 		title: {
 			text: 'Candlestick Chart',
 		},
-		rangeSelector: {
-			buttons: [
-				{
-					count: 1,
-					type: 'month',
-					text: '1M',
-				},
-				{
-					count: 5,
-					type: 'month',
-					text: '5M',
-				},
-				{
-					type: 'all',
-					text: 'Alles',
-				},
-			],
-			inputEnabled: false,
-			selected: 0,
+		credits: {
+			enabled: false,
+		},
+		chart: {
+			animation: true,
+			type: 'candlestick',
+			zoomtype: 'x',
 		},
 		xAxis: {
 			type: 'datetime',
+		},
+		plotOptions: {
+			series: {
+				minPointLength: 3,
+				dataGrouping: {
+					enabled: false,
+				},
+			},
 		},
 		yAxis: [
 			{
@@ -143,40 +138,74 @@ const TickerPage = () => {
 				opposite: true,
 			},
 		],
+		rangeSelector: {
+			buttons: [
+				{
+					type: 'day',
+					count: 1,
+					text: '1D',
+				},
+				{
+					type: 'week',
+					count: 1,
+					text: '1W',
+				},
+				{
+					type: 'all',
+					count: 1,
+					text: 'All',
+				},
+			],
+			selected: 2,
+			inputEnabled: true,
+			enabled: true,
+		},
+		navigator: {
+			enabled: true,
+		},
+
 		series: [
 			{
 				type: 'candlestick',
 				name: 'Stock Price',
 				data: generateMockData(),
-				dataGrouping: {
-					units: [['month', [1]]], // Group data by week (you can adjust this based on your data density)
-				},
+				// dataGrouping: {
+				// 	units: [['month', [1]]], // Group data by week (you can adjust this based on your data density)
+				// },
+				showInNavigator: true,
 			},
 			{
 				type: 'line',
 				name: 'Random Linear Data',
 				data: generateRandomLinearData(),
-				// yAxis: 1, // Link this series to the second y-axis
 				color: 'rgb(255, 204, 255)',
+				showInNavigator: false,
+				marker: {
+					enabled: false,
+				},
 			},
 			{
 				type: 'line',
 				name: 'Linear Graph 2',
 				data: generateRandomLinearData(),
-				// yAxis: 2, // This series uses another secondary y-axis
 				color: 'blue', // Set the color for this series
+				showInNavigator: false,
+				marker: {
+					enabled: false,
+				},
 			},
 		],
-		chart: {
-			animation: true,
-			type: 'candlestick',
-		},
 	};
 
 	return (
 		<div style={{ fontPalette: 'light' }}>
 			<p>Candles</p>
-			<HighchartsReact highcharts={Highcharts} options={options} />
+			<HighchartsReact
+				highcharts={Highcharts}
+				options={options}
+				updateArgs={[true, true, true]}
+				containerProps={{ className: 'chartContainer' }}
+			/>
 		</div>
 	);
 };
