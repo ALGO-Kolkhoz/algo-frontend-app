@@ -1,15 +1,15 @@
 import React from 'react';
-import Highcharts from 'highcharts';
+import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
 const getRandomValue = (min, max) => {
 	return Math.random() * (max - min) + min;
 };
 const generateMockData = () => {
-	const startDate = new Date('2023-01-01');
+	const startDate = new Date('2022-01-01');
 	const data = [];
 
-	for (let i = 0; i < 30; i++) {
+	for (let i = 0; i < 100; i++) {
 		const currentDate = new Date(startDate);
 		currentDate.setDate(startDate.getDate() + i);
 
@@ -23,23 +23,77 @@ const generateMockData = () => {
 
 	return data;
 };
+
+const generateRandomLinearData = () => {
+	const data = [];
+
+	for (let i = 2; i < 100; i++) {
+		data.push([
+			generateMockData()[i][0], // Use the same timestamp as the candlestick data
+			getRandomValue(80, 120), // Random linear data
+		]);
+	}
+
+	const lastDate = new Date(generateMockData()[data.length][0]);
+
+	return data;
+};
+
 const TickerPage = () => {
 	const options = {
 		title: {
 			text: 'Candlestick Chart',
 		},
+		rangeSelector: {
+			selected: 1,
+		},
 		xAxis: {
 			type: 'datetime',
 		},
-		yAxis: {
-			title: {
-				text: 'Stock Price',
+		yAxis: [
+			{
+				title: {
+					text: 'Stock Price',
+				},
 			},
-		},
-		series: {
+			{
+				title: { text: '' },
+				opposite: true,
+			},
+			{
+				title: {
+					text: '',
+				},
+				opposite: true,
+			},
+		],
+		series: [
+			{
+				type: 'candlestick',
+				name: 'Stock Price',
+				data: generateMockData(),
+				dataGrouping: {
+					units: [['month', [1]]], // Group data by week (you can adjust this based on your data density)
+				},
+			},
+			{
+				type: 'line',
+				name: 'Random Linear Data',
+				data: generateRandomLinearData(),
+				// yAxis: 1, // Link this series to the second y-axis
+				color: 'rgb(255, 204, 255)',
+			},
+			{
+				type: 'line',
+				name: 'Linear Graph 2',
+				data: generateRandomLinearData(),
+				// yAxis: 2, // This series uses another secondary y-axis
+				color: 'blue', // Set the color for this series
+			},
+		],
+		chart: {
+			animation: true,
 			type: 'candlestick',
-			name: 'Stock Price',
-			data: generateMockData(),
 		},
 	};
 
