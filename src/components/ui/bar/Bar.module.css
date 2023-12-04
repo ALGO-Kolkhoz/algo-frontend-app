@@ -1,0 +1,26 @@
+.bar {
+	height: 40px;
+	width: 100vw;
+	padding: 15px;
+	background-color: darkturquoise;
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+}
+.abandonedLink {
+	margin: 10px;
+	margin-left: auto;
+}
+.helloDiv {
+	display: inline-block;
+	margin-left: auto;
+}
+.signupLink {
+	margin-right: 20px;
+}
+.Link {
+	margin: 10px;
+}
+.functionalLinks {
+	margin: 5px;
+}

@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from 'react-router-dom';
-import Router from './components/Router';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
