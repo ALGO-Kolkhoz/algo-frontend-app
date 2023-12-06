@@ -62,10 +62,10 @@ Highcharts.setOptions({
 
 darkUnica(Highcharts);
 
-const getRandomValue = (min, max) => {
+export const getRandomValue = (min, max) => {
 	return Math.random() * (max - min) + min;
 };
-const generateMockData = () => {
+export const generateMockData = () => {
 	const startDate = new Date('2022-01-01');
 	const data = [];
 
@@ -112,6 +112,19 @@ const TickerPage = () => {
 		},
 		xAxis: {
 			type: 'datetime',
+		},
+		tooltip: {
+			// Customize the tooltip to display three different values
+			// formatter: function () {
+			// 	return `
+			//         <b>${Highcharts.dateFormat('%A, %b %e, %Y', this.x)}</b><br>
+			//         Open: ${this.points[0].point.open}<br>
+			//         High: ${this.points[0].point.high}<br>
+			//         Low: ${this.points[0].point.low}<br>
+			//         Close: ${this.points[0].point.close}
+			//     `;
+			// },
+			shared: true,
 		},
 		plotOptions: {
 			series: {
@@ -162,17 +175,25 @@ const TickerPage = () => {
 		},
 		navigator: {
 			enabled: true,
+			xAxis: {
+				dateTimeLabelFormats: {
+					day: '%b %e', // Customize the date format on the navigator
+				},
+			},
 		},
 
 		series: [
 			{
-				type: 'candlestick',
+				type: 'line',
 				name: 'Stock Price',
 				data: generateMockData(),
 				// dataGrouping: {
 				// 	units: [['month', [1]]], // Group data by week (you can adjust this based on your data density)
 				// },
 				showInNavigator: true,
+				tooltip: {
+					valueDecimals: 2,
+				},
 			},
 			{
 				type: 'line',
