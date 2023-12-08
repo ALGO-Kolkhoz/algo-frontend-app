@@ -184,12 +184,9 @@ const TickerPage = () => {
 
 		series: [
 			{
-				type: 'line',
+				type: 'candlestick',
 				name: 'Stock Price',
 				data: generateMockData(),
-				// dataGrouping: {
-				// 	units: [['month', [1]]], // Group data by week (you can adjust this based on your data density)
-				// },
 				showInNavigator: true,
 				tooltip: {
 					valueDecimals: 2,
