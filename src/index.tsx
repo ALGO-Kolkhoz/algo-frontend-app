@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -13,6 +12,9 @@ const root = ReactDOM.createRoot(
 const darkTheme = createTheme({
 	palette: {
 		mode: 'dark',
+		primary: {
+			main: '#3498db', // Replace with your main color
+		},
 	},
 });
 

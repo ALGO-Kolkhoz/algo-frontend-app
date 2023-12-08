@@ -114,16 +114,6 @@ const TickerPage = () => {
 			type: 'datetime',
 		},
 		tooltip: {
-			// Customize the tooltip to display three different values
-			// formatter: function () {
-			// 	return `
-			//         <b>${Highcharts.dateFormat('%A, %b %e, %Y', this.x)}</b><br>
-			//         Open: ${this.points[0].point.open}<br>
-			//         High: ${this.points[0].point.high}<br>
-			//         Low: ${this.points[0].point.low}<br>
-			//         Close: ${this.points[0].point.close}
-			//     `;
-			// },
 			shared: true,
 		},
 		plotOptions: {
