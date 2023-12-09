@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 import { getRandomValue } from '../TickerPage';
+import { Tabs, Tab, Grid } from '@mui/material';
 
 export const generateMockPercentageData = () => {
 	const startDate = new Date('2022-01-01');
@@ -76,6 +77,7 @@ Highcharts.setOptions({
 });
 
 darkUnica(Highcharts);
+
 const RecommendedPage = () => {
 	const options = {
 		title: {
@@ -159,10 +161,83 @@ const RecommendedPage = () => {
 					enabled: false,
 				},
 			},
+			{
+				type: 'line',
+				name: 'Stock Price 1',
+				animation: true,
+				data: generateMockPercentageData(),
+				showInNavigator: true,
+				tooltip: {
+					valueDecimals: 2,
+				},
+				color: 'green',
+				colorAxis: 'green',
+				cursor: 'cell',
+				marker: {
+					enabled: false,
+				},
+			},
+			{
+				type: 'line',
+				name: 'Stock Price',
+				animation: true,
+				data: generateMockPercentageData(),
+				showInNavigator: true,
+				tooltip: {
+					valueDecimals: 2,
+				},
+				color: 'orange',
+				colorAxis: 'orange',
+				cursor: 'cell',
+				marker: {
+					enabled: false,
+				},
+			},
 		],
 	};
+	const [leftValue, setLeftValue] = useState<number>(0);
+	const [rightValue, setRightValue] = useState<number>(3);
+
+	const handleLeftChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+		setLeftValue(newValue);
+	};
+
+	const handleRightChange = (
+		event: React.ChangeEvent<{}>,
+		newValue: number
+	) => {
+		setRightValue(newValue);
+	};
+
 	return (
 		<div style={{ fontPalette: 'light' }}>
+			<Grid container>
+				{/* Left group */}
+				<Grid item xs={6}>
+					<Tabs
+						value={leftValue}
+						onChange={handleLeftChange}
+						sx={{ '& .MuiTabs-indicator': { backgroundColor: '#ff4081' } }}
+					>
+						<Tab label='Tab 1' value={0} style={{ color: '#fff' }} />
+						<Tab label='Tab 2' value={1} style={{ color: '#fff' }} />
+						<Tab label='Tab 3' value={2} style={{ color: '#fff' }} />
+					</Tabs>
+				</Grid>
+
+				{/* Right group */}
+				<Grid item xs={6} style={{ textAlign: 'right' }}>
+					<Tabs
+						value={rightValue}
+						onChange={handleRightChange}
+						sx={{ '& .MuiTabs-indicator': { backgroundColor: '#ff9800' } }}
+					>
+						<Tab label='Tab 4' value={3} style={{ color: '#fff' }} />
+						<Tab label='Tab 5' value={4} style={{ color: '#fff' }} />
+						<Tab label='Tab 6' value={5} style={{ color: '#fff' }} />
+					</Tabs>
+				</Grid>
+			</Grid>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</div>
 	);
