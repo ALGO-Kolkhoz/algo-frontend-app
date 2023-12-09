@@ -6,13 +6,14 @@ import { TickerContext } from './context/TickerContext';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './components/Router';
 import Bar from './components/ui/bar/Bar';
+import BinanceBar from './components/ui/BinanceBar';
 
 function App() {
 	const [tickName, setTickName] = useState('PER_DAY');
 	return (
 		<TickerContext.Provider value={{ tickName, setTickName }}>
 			<BrowserRouter>
-				<Bar />
+				<BinanceBar />
 				<Router />
 			</BrowserRouter>
 		</TickerContext.Provider>

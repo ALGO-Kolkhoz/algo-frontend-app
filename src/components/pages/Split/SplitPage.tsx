@@ -3,7 +3,6 @@ import {
 	List,
 	ListItem,
 	IconButton,
-	Typography,
 	Chip,
 	Box,
 	Avatar,
@@ -11,6 +10,7 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import classes from './SplitPage.module.css';
 
 interface ListItemType {
 	label: string;
@@ -96,6 +96,7 @@ const SplitPage = () => {
 							<IconButton
 								color='secondary'
 								onClick={() => handleTransfer(item, list2, list1)}
+								style={{ color: 'red' }}
 							>
 								<DeleteIcon />
 							</IconButton>
