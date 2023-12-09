@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 import { Tabs, Tab, Grid } from '@mui/material';
 import { stocksArr } from '../../common/stocks';
+import { nanoid } from 'nanoid';
 
 Highcharts.setOptions({
 	lang: {
@@ -223,17 +224,26 @@ const TickerPage = () => {
 			<div className='w-[290px] p-5 items-center justify-center'>
 				<div>
 					{/* {list} */}
-					{stocksArr.map((item) => (
-						<div className=' flex items-center cursor-pointer '>
-							<img
-								src={process.env.PUBLIC_URL + '/img/FIXP.png'}
-								className=' w-5 h-5 shrink-0 rounded-full bg-gray-700 flex items-center justify-center'
-							/>
-							<div className=' text-lg text-yellow-400 underline ml-2'>
-								{item.fullName + ' ($' + item.tickerName + ')'}
+					{stocksArr.map((item) => {
+						console.log({
+							stocksArr,
+							stockNames: stocksArr.map((item) => item.image),
+						});
+						return (
+							<div
+								key={nanoid()}
+								className=' flex items-center cursor-pointer '
+							>
+								<img
+									src={process.env.PUBLIC_URL + '/img/FIXP.png'}
+									className=' w-5 h-5 shrink-0 rounded-full bg-gray-700 flex items-center justify-center'
+								/>
+								<div className=' text-lg text-yellow-400 underline ml-2'>
+									{item.fullName + ' ($' + item.tickerName + ')'}
+								</div>
 							</div>
-						</div>
-					))}
+						);
+					})}
 				</div>
 			</div>
 			<div className='w-0.5 bg-gray-500'></div>
