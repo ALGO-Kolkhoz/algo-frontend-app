@@ -22,6 +22,7 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 import { options } from '../Recommended/RecommendedPage';
+import { stocksArr } from '../../../common/stocks';
 
 Highcharts.setOptions({
 	lang: {

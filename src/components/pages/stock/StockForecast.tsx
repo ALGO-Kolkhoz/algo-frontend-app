@@ -7,8 +7,6 @@ const StockForecast = () => {
 			<div className='w-1/3 items-center justify-center'>
 				<Input
 					placeholder='Search in list 1'
-					// value={searchQuery}
-					// onChange={(e) => setSearchQuery(e.target.value)}
 					inputProps={{ style: { color: 'white' } }}
 					style={{ color: 'white' }}
 				/>

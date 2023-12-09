@@ -1,4 +1,4 @@
-const stocksArr = [
+export const stocksArr = [
 	{
 		image: 'VTBR.png',
 		tickerName: 'VTBR',
@@ -12,7 +12,7 @@ const stocksArr = [
 	{
 		image: 'RNFT.png',
 		tickerName: 'RNFT',
-		fullName: 'Роснефть',
+		fullName: 'РуссНефть',
 	},
 	{
 		image: 'KTSB.png',
@@ -22,22 +22,22 @@ const stocksArr = [
 	{
 		image: 'YAKG.png',
 		tickerName: 'YAKG',
-		fullName: 'Якутскгенплан',
+		fullName: 'ЯТЭК',
 	},
 	{
 		image: 'ZILL.png',
 		tickerName: 'ZILL',
-		fullName: 'Зиллерген',
+		fullName: 'ЗИЛ',
 	},
 	{
 		image: 'KCHE.png',
 		tickerName: 'KCHE',
-		fullName: 'Красное Черноморье',
+		fullName: 'Камчатскэнерго',
 	},
 	{
 		image: 'TCSG.png',
 		tickerName: 'TCSG',
-		fullName: 'Туапсинский порт',
+		fullName: 'Тинькофф',
 	},
 	{
 		image: 'ROSN.png',
@@ -47,12 +47,12 @@ const stocksArr = [
 	{
 		image: 'DIOD.png',
 		tickerName: 'DIOD',
-		fullName: 'Диод',
+		fullName: 'Завод Диод',
 	},
 	{
 		image: 'VSMO.png',
 		tickerName: 'VSMO',
-		fullName: 'Всемосковское',
+		fullName: 'ВСМПО-АВИСМА',
 	},
 	{
 		image: 'MOEX.png',
@@ -62,17 +62,17 @@ const stocksArr = [
 	{
 		image: 'RTGZ.png',
 		tickerName: 'RTGZ',
-		fullName: 'РТ-Глобал',
+		fullName: 'Газпром газораспределение Ростов-на-Дону',
 	},
 	{
 		image: 'NNSB.png',
 		tickerName: 'NNSB',
-		fullName: 'Нона',
+		fullName: 'ТНС энерго Нижний Новгород',
 	},
 	{
 		image: 'ELFV.png',
 		tickerName: 'ELFV',
-		fullName: 'Эльфертевское',
+		fullName: 'ЭЛ5-Энерго',
 	},
 	{
 		image: 'MGTS.png',
@@ -87,12 +87,12 @@ const stocksArr = [
 	{
 		image: 'CARM.png',
 		tickerName: 'CARM',
-		fullName: 'Карма',
+		fullName: 'СТГ',
 	},
 	{
 		image: 'VRSB.png',
 		tickerName: 'VRSB',
-		fullName: 'Ворсиба',
+		fullName: 'ТНС энерго Воронеж',
 	},
 	{
 		image: 'LKOH.png',
@@ -102,12 +102,12 @@ const stocksArr = [
 	{
 		image: 'SOFL.png',
 		tickerName: 'SOFL',
-		fullName: 'Софлана',
+		fullName: 'Софтлайн',
 	},
 	{
 		image: 'AQUA.png',
 		tickerName: 'AQUA',
-		fullName: 'Аквафор',
+		fullName: 'ИНАРКТИКА',
 	},
 	{
 		image: 'PRMB.png',
@@ -132,17 +132,17 @@ const stocksArr = [
 	{
 		image: 'KUZB.png',
 		tickerName: 'KUZB',
-		fullName: 'Кузбасс',
+		fullName: 'Банк Кузнецкий',
 	},
 	{
 		image: 'SAGO.png',
 		tickerName: 'SAGO',
-		fullName: 'Самараагропром',
+		fullName: 'Самараэнерго',
 	},
 	{
 		image: 'YRSB.png',
 		tickerName: 'YRSB',
-		fullName: 'Мордовская сбытовая',
+		fullName: 'ТНС энерго Ярославль',
 	},
 	{
 		image: 'GMKN.png',
@@ -152,12 +152,12 @@ const stocksArr = [
 	{
 		image: 'KROT.png',
 		tickerName: 'KROT',
-		fullName: 'Красное онгар',
+		fullName: 'Красный Октябрь',
 	},
 	{
 		image: 'VKCO.png',
 		tickerName: 'VKCO',
-		fullName: 'Вятская кондитерская',
+		fullName: 'ВК',
 	},
 	{
 		image: 'CIAN.png',
@@ -167,37 +167,37 @@ const stocksArr = [
 	{
 		image: 'ENPG.png',
 		tickerName: 'ENPG',
-		fullName: 'Енел',
+		fullName: 'ЭН+ ГРУП',
 	},
 	{
 		image: 'CNTL.png',
 		tickerName: 'CNTL',
-		fullName: 'Кантел',
+		fullName: 'Центральный Телеграф',
 	},
 	{
 		image: 'PIKK.png',
 		tickerName: 'PIKK',
-		fullName: 'Пикник',
+		fullName: 'ПИК',
 	},
 	{
 		image: 'TGKB.png',
 		tickerName: 'TGKB',
-		fullName: 'Тверская газовая компания',
+		fullName: 'ТГК-2',
 	},
 	{
 		image: 'DVEC.png',
 		tickerName: 'DVEC',
-		fullName: 'ДальЭнергоСбыт',
+		fullName: 'ДЭК',
 	},
 	{
 		image: 'IGST.png',
 		tickerName: 'IGST',
-		fullName: 'Ижингородская ТЭС',
+		fullName: 'Ижсталь',
 	},
 	{
 		image: 'DSKY.png',
 		tickerName: 'DSKY',
-		fullName: 'Дискавери',
+		fullName: 'Детский мир',
 	},
 	{
 		image: 'FIXP.png',
@@ -212,11 +212,11 @@ const stocksArr = [
 	{
 		image: 'RTSB.png',
 		tickerName: 'RTSB',
-		fullName: 'Русские сети',
+		fullName: 'ТНС энерго Ростов-на-Дону',
 	},
 	{
 		image: 'UKUZ.png',
 		tickerName: 'UKUZ',
-		fullName: 'Южуралконстрой',
+		fullName: 'Южный Кузбасс',
 	},
-];
+].sort((a, b) => a.fullName.localeCompare(b.fullName));
