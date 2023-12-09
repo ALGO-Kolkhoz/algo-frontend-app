@@ -20,8 +20,8 @@ const darkTheme = createTheme({
 
 root.render(
 	<React.StrictMode>
-		<App />
 		<ThemeProvider theme={darkTheme}>
+			<App />
 			<CssBaseline />
 		</ThemeProvider>
 	</React.StrictMode>

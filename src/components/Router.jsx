@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Redirect } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import TickerPage from './pages/TickerPage';
 import WelcomePage from './pages/WelcomePage';

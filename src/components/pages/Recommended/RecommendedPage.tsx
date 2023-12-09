@@ -78,123 +78,123 @@ Highcharts.setOptions({
 
 darkUnica(Highcharts);
 
-const RecommendedPage = () => {
-	const options = {
-		title: {
-			text: 'Compare charts',
-		},
-		credits: {
-			enabled: false,
-		},
-		rangeSelector: {
-			buttons: [
-				{
-					type: 'day',
-					count: 1,
-					text: '1D',
-				},
-				{
-					type: 'week',
-					count: 1,
-					text: '1W',
-				},
-				{
-					type: 'all',
-					count: 1,
-					text: 'All',
-				},
-			],
-			selected: 2,
-			inputEnabled: true,
-			enabled: true,
-		},
-		navigator: {
-			enabled: true,
-			xAxis: {
-				dateTimeLabelFormats: {
-					day: '%b %e', // Customize the date format on the navigator
-				},
-			},
-		},
-		plotOptions: {
-			series: {
-				compare: 'percent',
-				showInNavigator: true,
-				enableMouseTracking: true,
-			},
-		},
-		xAxis: {
-			type: 'datetime',
-		},
-		yAxis: {
-			labels: {
-				format: '{#if (gt value 0)}+{/if}{value}%',
-			},
-			plotLines: [
-				{
-					value: 0,
-					width: 2,
-					color: 'silver',
-				},
-			],
-		},
-		tooltip: {
-			pointFormat:
-				'<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-			valueDecimals: 2,
-			split: true,
-		},
-		series: [
+export const options = {
+	title: {
+		text: 'Compare charts',
+	},
+	credits: {
+		enabled: false,
+	},
+	rangeSelector: {
+		buttons: [
 			{
-				type: 'line',
-				name: 'Stock Price',
-				animation: true,
-				data: generateMockPercentageData(),
-				showInNavigator: true,
-				tooltip: {
-					valueDecimals: 2,
-				},
-				color: 'pink',
-				colorAxis: 'pink',
-				cursor: 'cell',
-				marker: {
-					enabled: false,
-				},
+				type: 'day',
+				count: 1,
+				text: '1D',
 			},
 			{
-				type: 'line',
-				name: 'Stock Price 1',
-				animation: true,
-				data: generateMockPercentageData(),
-				showInNavigator: true,
-				tooltip: {
-					valueDecimals: 2,
-				},
-				color: 'green',
-				colorAxis: 'green',
-				cursor: 'cell',
-				marker: {
-					enabled: false,
-				},
+				type: 'week',
+				count: 1,
+				text: '1W',
 			},
 			{
-				type: 'line',
-				name: 'Stock Price',
-				animation: true,
-				data: generateMockPercentageData(),
-				showInNavigator: true,
-				tooltip: {
-					valueDecimals: 2,
-				},
-				color: 'orange',
-				colorAxis: 'orange',
-				cursor: 'cell',
-				marker: {
-					enabled: false,
-				},
+				type: 'all',
+				count: 1,
+				text: 'All',
 			},
 		],
-	};
+		selected: 2,
+		inputEnabled: true,
+		enabled: true,
+	},
+	navigator: {
+		enabled: true,
+		xAxis: {
+			dateTimeLabelFormats: {
+				day: '%b %e', // Customize the date format on the navigator
+			},
+		},
+	},
+	plotOptions: {
+		series: {
+			compare: 'percent',
+			showInNavigator: true,
+			enableMouseTracking: true,
+		},
+	},
+	xAxis: {
+		type: 'datetime',
+	},
+	yAxis: {
+		labels: {
+			format: '{#if (gt value 0)}+{/if}{value}%',
+		},
+		plotLines: [
+			{
+				value: 0,
+				width: 2,
+				color: 'silver',
+			},
+		],
+	},
+	tooltip: {
+		pointFormat:
+			'<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+		valueDecimals: 2,
+		split: true,
+	},
+	series: [
+		{
+			type: 'line',
+			name: 'Stock Price',
+			animation: true,
+			data: generateMockPercentageData(),
+			showInNavigator: true,
+			tooltip: {
+				valueDecimals: 2,
+			},
+			color: 'pink',
+			colorAxis: 'pink',
+			cursor: 'cell',
+			marker: {
+				enabled: false,
+			},
+		},
+		{
+			type: 'line',
+			name: 'Stock Price 1',
+			animation: true,
+			data: generateMockPercentageData(),
+			showInNavigator: true,
+			tooltip: {
+				valueDecimals: 2,
+			},
+			color: 'green',
+			colorAxis: 'green',
+			cursor: 'cell',
+			marker: {
+				enabled: false,
+			},
+		},
+		{
+			type: 'line',
+			name: 'Stock Price',
+			animation: true,
+			data: generateMockPercentageData(),
+			showInNavigator: true,
+			tooltip: {
+				valueDecimals: 2,
+			},
+			color: 'orange',
+			colorAxis: 'orange',
+			cursor: 'cell',
+			marker: {
+				enabled: false,
+			},
+		},
+	],
+};
+const RecommendedPage = () => {
 	const [leftValue, setLeftValue] = useState<number>(0);
 	const [rightValue, setRightValue] = useState<number>(3);
 
