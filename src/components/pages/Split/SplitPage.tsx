@@ -8,9 +8,13 @@ import {
 	Avatar,
 	Input,
 	Typography,
+	Autocomplete,
+	TextField,
+	Icon,
 } from '@mui/material';
 // import { Tabs, Tab, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import classes from './SplitPage.module.css';
 import { Tabs, Tab, Grid } from '@mui/material';
@@ -120,42 +124,50 @@ const SplitPage = () => {
 
 	return (
 		<div className='flex flex-1 h-screen'>
-			<div className='w-1/3 items-center justify-center'>
-				<Input
-					placeholder='Search in list 1'
-					value={searchQuery}
-					onChange={(e) => setSearchQuery(e.target.value)}
-					inputProps={{ style: { color: 'white' } }}
-					style={{ color: 'white' }}
-				/>
-				<List>
-					{filteredList1.map((item, index) => (
-						<ListItem key={index}>
-							<Chip
-								label={item.label}
-								color='primary'
-								avatar={<Avatar>{item.avatar}</Avatar>}
-							/>
-							<IconButton
-								color='success'
-								onClick={() => handleTransfer(item, list1, list2)}
-							>
-								<AddIcon />
-							</IconButton>
-						</ListItem>
-					))}
-				</List>
+			<div className='w-[290px]  overflow-y-auto p-5'>
+				<div className=' h-[5000px]'>
+					<div className='flex flex-col items-center justify-center'>
+						<TextField
+							placeholder='Search'
+							InputProps={{
+								endAdornment: <SearchIcon />,
+							}}
+						/>
+
+						<List>
+							{filteredList1.map((item, index) => (
+								<ListItem key={index}>
+									<Chip
+										label={
+											<div className='flex items-center gap-2'>
+												x<span>{item.label}</span>
+											</div>
+										}
+										color='primary'
+										avatar={<Avatar>{item.avatar}</Avatar>}
+									/>
+									<IconButton
+										color='success'
+										onClick={() => handleTransfer(item, list1, list2)}
+									>
+										<AddIcon />
+									</IconButton>
+								</ListItem>
+							))}
+						</List>
+					</div>
+				</div>
 			</div>
 			<div className='w-0.5 bg-gray-500'></div>
-			<div className='w-2/3 flex flex-col'>
+			<div className='grow min-w-0 flex flex-col'>
 				<div className='flex-1/3 p-4 bg-gray-500'>
 					<Tabs
 						value={strategyTabState}
 						onChange={(event, value) => setStrategyTabState(+value)}
 						sx={{ '& .MuiTabs-indicator': { backgroundColor: 'magenta' } }}
 					>
-						<Tab label='Conservative' value={0} style={{ color: '#fff' }} />
-						<Tab label='Aggresive' value={1} style={{ color: '#fff' }} />
+						<Tab label='Positive' value={0} style={{ color: '#fff' }} />
+						<Tab label='Negative' value={1} style={{ color: '#fff' }} />
 						<Tab label='Common' value={2} style={{ color: '#fff' }} />
 					</Tabs>
 				</div>
