@@ -24,12 +24,15 @@ const AdvancedBar = () => {
 					Your portfolio
 				</div>
 				<div
-					className='cursor-pointer'
+					className='mr-4 cursor-pointer'
 					onClick={() => {
 						navigate('/recomended');
 					}}
 				>
 					We recommend
+				</div>
+				<div className='cursor-pointer' onClick={() => navigate('/ticker')}>
+					Stock forecast
 				</div>
 			</div>
 			<div className='flex items-center'>
