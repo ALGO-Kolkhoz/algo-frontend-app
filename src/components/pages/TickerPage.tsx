@@ -329,7 +329,7 @@ const TickerPage = () => {
 								onClick={() => setCurrentTicker(item.tickerName)}
 							>
 								<img
-									src={process.env.PUBLIC_URL + '/img/FIXP.png'}
+									src={process.env.PUBLIC_URL + '/img/' + item.image}
 									className=' w-5 h-5 shrink-0 rounded-full bg-gray-700 flex items-center justify-center'
 								/>
 								<div className=' text-lg text-yellow-400 underline ml-2'>
