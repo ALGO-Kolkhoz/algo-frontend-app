@@ -111,7 +111,7 @@ const WelcomePage = () => {
 				</div>
 			</div>
 			<div className=' text-center opacity-50 text-md  mt-auto mb-0 p-6 '>
-				Copyright © 2023 Freepik Company S.L. All rights reserved.
+				Copyright © 2023 Kolkhoz Inc. All rights reserved.
 			</div>
 		</div>
 	);

@@ -6,23 +6,23 @@ import {
 	Chip,
 	Box,
 	Avatar,
-	Input,
-	Typography,
-	Autocomplete,
 	TextField,
-	Icon,
 } from '@mui/material';
 // import { Tabs, Tab, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import classes from './SplitPage.module.css';
-import { Tabs, Tab, Grid } from '@mui/material';
+import { Tabs, Tab } from '@mui/material';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 import { options } from '../Recommended/RecommendedPage';
-import { stocksArr } from '../../../common/stocks';
+import { stocksArr, Stock } from '../../../common/stocks';
+
+interface DataSeries {
+	date: Date;
+}
 
 Highcharts.setOptions({
 	lang: {
@@ -64,8 +64,6 @@ Highcharts.setOptions({
 			'Ноя',
 			'Дек',
 		],
-		// exportButtonTitle: 'Экспорт',
-		// printButtonTitle: 'Печать',
 		rangeSelectorFrom: 'С',
 		rangeSelectorTo: 'По',
 		rangeSelectorZoom: 'Период',
@@ -93,35 +91,41 @@ const SplitPage = () => {
 		{ label: 'Item 2', avatar: 'B' },
 		{ label: 'Item 3', avatar: 'C' },
 	];
-	const [list1, setList1] = useState<ListItemType[]>(initialList1);
-	const [list2, setList2] = useState<ListItemType[]>([]);
+	const [list1, setList1] = useState<typeof stocksArr>(stocksArr);
+	const [list2, setList2] = useState<typeof stocksArr>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
 
-	const handleTransfer = (
-		item: ListItemType,
-		fromList: ListItemType[],
-		toList: ListItemType[]
-	) => {
+	const handleTransfer = (item: Stock, fromList: Stock[], toList: Stock[]) => {
 		const updatedFromList = fromList.filter(
 			(i) => JSON.stringify(i) !== JSON.stringify(item)
 		);
 		const updatedToList = [...toList, item];
 
 		fromList === list1
-			? setList1(updatedFromList.sort((a, b) => a.label.localeCompare(b.label)))
+			? setList1(
+					updatedFromList.sort((a, b) => a.fullName.localeCompare(b.fullName))
+			  )
 			: setList2(
-					updatedFromList.sort((a, b) => a.label.localeCompare(b.label))
+					updatedFromList.sort((a, b) => a.fullName.localeCompare(b.fullName))
 			  );
 		toList === list1
-			? setList1(updatedToList.sort((a, b) => a.label.localeCompare(b.label)))
-			: setList2(updatedToList.sort((a, b) => a.label.localeCompare(b.label)));
+			? setList1(
+					updatedToList.sort((a, b) => a.fullName.localeCompare(b.fullName))
+			  )
+			: setList2(
+					updatedToList.sort((a, b) => a.fullName.localeCompare(b.fullName))
+			  );
 	};
 
-	const filteredList1 = list1.filter((item) =>
-		item.label.toLowerCase().includes(searchQuery.toLowerCase())
+	const filteredList1: Stock[] = list1.filter((item) =>
+		(item.fullName + item.tickerName.replace('$', ''))
+			.toLowerCase()
+			.includes(searchQuery.toLowerCase())
 	);
 
 	const [strategyTabState, setStrategyTabState] = useState(0);
+
+	const tickTimeArr = ['PER_10_MIN', 'PER_DAY', 'PER_WEEK'];
 
 	return (
 		<div className='flex flex-1 h-screen'>
@@ -133,19 +137,27 @@ const SplitPage = () => {
 							InputProps={{
 								endAdornment: <SearchIcon />,
 							}}
+							onChange={(e) => setSearchQuery(e.target.value)}
+							style={{ color: 'white' }}
 						/>
 
 						<List>
-							{filteredList1.map((item, index) => (
+							{stocksArr.map((item, index) => (
 								<ListItem key={index}>
 									<Chip
 										label={
 											<div className='flex items-center gap-2'>
-												x<span>{item.label}</span>
+												<span>{item.tickerName}</span>
 											</div>
 										}
 										color='primary'
-										avatar={<Avatar>{item.avatar}</Avatar>}
+										avatar={
+											<Avatar>
+												<img
+													src={process.env.PUBLIC_URL + '/img/' + item.image}
+												/>
+											</Avatar>
+										}
 									/>
 									<IconButton
 										color='success'
@@ -167,16 +179,28 @@ const SplitPage = () => {
 						onChange={(event, value) => setStrategyTabState(+value)}
 						sx={{ '& .MuiTabs-indicator': { backgroundColor: 'magenta' } }}
 					>
-						<Tab label='Positive' value={0} style={{ color: '#fff' }} />
-						<Tab label='Negative' value={1} style={{ color: '#fff' }} />
-						<Tab label='Common' value={2} style={{ color: '#fff' }} />
+						<Tab
+							label='10-минутный прогноз'
+							value={0}
+							style={{ color: '#fff' }}
+						/>
+						<Tab
+							label='Однодневный прогноз'
+							value={1}
+							style={{ color: '#fff' }}
+						/>
+						<Tab
+							label='Прогноз на неделю'
+							value={2}
+							style={{ color: '#fff' }}
+						/>
 					</Tabs>
 				</div>
 				{/* <div className='flex-1/3 p-4 bg-gray-500'></div> */}
 				<div className='flex-1/3 p-4 bg-gray-500'>
 					<Box display='flex' flexDirection='row'>
 						<Chip
-							label='Портфель:'
+							label='Портфель: '
 							style={{ marginRight: '8px', marginLeft: '8px' }}
 						/>
 						{list2.map((item, index) => (
@@ -185,9 +209,9 @@ const SplitPage = () => {
 								style={{ marginRight: '8px', marginLeft: '8px' }}
 							>
 								<Chip
-									label={item.label}
+									label={item.fullName}
 									color='primary'
-									avatar={<Avatar>{item.avatar}</Avatar>}
+									avatar={<Avatar>{item.image}</Avatar>}
 									style={{ color: 'white' }}
 								/>
 								<IconButton
@@ -202,21 +226,18 @@ const SplitPage = () => {
 					</Box>
 				</div>
 				<div className='text-center '>
-					<p className='text-lg text-gray-200'>Per 10 min</p>
 					<HighchartsReact
 						highcharts={Highcharts}
 						options={options}
 						updateArgs={[true, true, true]}
 						containerProps={{ className: 'chartContainer' }}
 					/>
-					<p className='text-lg text-gray-200'>Per day</p>
 					<HighchartsReact
 						highcharts={Highcharts}
 						options={options}
 						updateArgs={[true, true, true]}
 						containerProps={{ className: 'chartContainer' }}
 					/>
-					<p className='text-lg text-gray-200'>Per week</p>
 					<HighchartsReact
 						highcharts={Highcharts}
 						options={options}

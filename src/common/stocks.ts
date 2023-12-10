@@ -1,4 +1,9 @@
-export const stocksArr = [
+export interface Stock {
+	image: string;
+	fullName: string;
+	tickerName: string;
+}
+export const stocksArr: Stock[] = [
 	{
 		image: 'VTBR.png',
 		tickerName: 'VTBR',
