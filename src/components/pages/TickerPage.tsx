@@ -301,7 +301,7 @@ const TickerPage = () => {
 		console.log(tmpOptions);
 
 		//series adding
-	});
+	}, [leftValue, currentTicker]);
 
 	const filteredArrList = stocksArr.filter((item) => {
 		return item.fullName
