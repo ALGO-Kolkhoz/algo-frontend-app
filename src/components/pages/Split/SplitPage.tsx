@@ -142,7 +142,7 @@ const SplitPage = () => {
 						/>
 
 						<List>
-							{stocksArr.map((item, index) => (
+							{filteredList1.map((item, index) => (
 								<ListItem key={index}>
 									<Chip
 										label={
