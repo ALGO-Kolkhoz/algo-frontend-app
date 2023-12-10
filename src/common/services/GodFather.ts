@@ -3,7 +3,7 @@ export interface RangeButton {
 	count?: number;
 	text: string;
 }
-export default class GodService {
+export default class GodFather {
 	static randomColorGenerator() {
 		const r = Math.floor(Math.random() * 256);
 		const g = Math.floor(Math.random() * 256);
