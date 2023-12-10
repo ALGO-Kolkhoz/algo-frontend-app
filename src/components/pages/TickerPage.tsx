@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
-import { Tabs, Tab, Grid } from '@mui/material';
+import { Tabs, Tab, Grid, TextField } from '@mui/material';
 import { stocksArr } from '../../common/stocks';
 import { nanoid } from 'nanoid';
+import SearchIcon from '@mui/icons-material/Search';
+import GodFather from '../../common/services/GodFather';
 
 Highcharts.setOptions({
 	lang: {
@@ -187,7 +189,7 @@ const TickerPage = () => {
 				type: 'line',
 				name: 'Random Linear Data',
 				data: generateRandomLinearData(),
-				color: 'rgb(255, 204, 255)',
+				color: GodFather.randomColorGenerator(),
 				showInNavigator: false,
 				marker: {
 					enabled: false,
@@ -197,7 +199,7 @@ const TickerPage = () => {
 				type: 'line',
 				name: 'Linear Graph 2',
 				data: generateRandomLinearData(),
-				color: 'blue', // Set the color for this series
+				color: GodFather.randomColorGenerator(), // Set the color for this series
 				showInNavigator: false,
 				marker: {
 					enabled: false,
@@ -205,8 +207,28 @@ const TickerPage = () => {
 			},
 		],
 	};
+	const initialObjectsArr = [
+		{
+			id: 'PER_10_MIN',
+			label: '10 минутный период',
+			value: 1,
+		},
+		{
+			id: 'PER_10_MIN',
+			label: '10 минутный период',
+			value: 2,
+		},
+		{
+			id: 'PER_10_MIN',
+			label: '10 минутный период',
+			value: 3,
+		},
+	];
 	const [leftValue, setLeftValue] = useState<number>(0);
 	const [rightValue, setRightValue] = useState<number>(3);
+	const [searchQuery, setSearchQuery] = useState<string>('');
+
+	const [initialTickTimeObj, setInitialTickTimeObj] = useState({});
 
 	const handleLeftChange = (event: React.ChangeEvent<{}>, newValue: number) => {
 		setLeftValue(newValue);
@@ -219,16 +241,27 @@ const TickerPage = () => {
 		setRightValue(newValue);
 	};
 
+	const filteredArrList = stocksArr.filter((item) => {
+		{
+			return item.fullName
+				.concat(item.tickerName.replace('$', ''))
+				.toLowerCase()
+				.includes(searchQuery.toLowerCase());
+		}
+	});
+
 	return (
 		<div className='flex flex-1 h-screen'>
 			<div className='w-[290px] p-5 items-center justify-center'>
 				<div>
-					{/* {list} */}
-					{stocksArr.map((item) => {
-						console.log({
-							stocksArr,
-							stockNames: stocksArr.map((item) => item.image),
-						});
+					<TextField
+						placeholder='Search'
+						InputProps={{
+							endAdornment: <SearchIcon />,
+						}}
+						onChange={(e) => setSearchQuery(e.target.value)}
+					/>
+					{filteredArrList.map((item) => {
 						return (
 							<div
 								key={nanoid()}
@@ -262,7 +295,7 @@ const TickerPage = () => {
 							</Tabs>
 						</Grid>
 
-						<Grid item xs={6} style={{ textAlign: 'right' }}>
+						{/* <Grid item xs={6} style={{ textAlign: 'right' }}>
 							<Tabs
 								value={rightValue}
 								onChange={handleRightChange}
@@ -272,7 +305,7 @@ const TickerPage = () => {
 								<Tab label='Tab 5' value={4} style={{ color: '#fff' }} />
 								<Tab label='Tab 6' value={5} style={{ color: '#fff' }} />
 							</Tabs>
-						</Grid>
+						</Grid> */}
 					</Grid>
 				</div>
 				<HighchartsReact

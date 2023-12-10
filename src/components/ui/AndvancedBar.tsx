@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
 const AdvancedBar = () => {
@@ -21,7 +20,7 @@ const AdvancedBar = () => {
 						navigate('/split');
 					}}
 				>
-					Your portfolio
+					Создать портфель
 				</div>
 				<div
 					className='mr-4 cursor-pointer'
@@ -29,10 +28,10 @@ const AdvancedBar = () => {
 						navigate('/recomended');
 					}}
 				>
-					We recommend
+					Рекомендованные акции
 				</div>
 				<div className='cursor-pointer' onClick={() => navigate('/ticker')}>
-					Stock forecast
+					Прогноз по акции
 				</div>
 			</div>
 		</div>
