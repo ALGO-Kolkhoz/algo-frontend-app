@@ -24,8 +24,6 @@ export const generateMockPercentageData = () => {
 	return data;
 };
 
-const commonOptions = {};
-
 const initialData = [
 	{
 		value: 1,
@@ -121,7 +119,7 @@ darkUnica(Highcharts);
 
 export const options = {
 	title: {
-		text: 'Compare charts',
+		text: 'Рекомендованные акции',
 	},
 	credits: {
 		enabled: false,
@@ -238,7 +236,7 @@ export const options = {
 
 const initialOptions = {
 	title: {
-		text: 'Compare charts',
+		text: 'Рекомендованные акции',
 	},
 	credits: {
 		enabled: false,
@@ -317,7 +315,10 @@ const RecommendedPage = () => {
 
 		const rangeButtons = GodFather.buttonGenerator(tickerTime);
 
-		const tmpOptions = { ...initialOptions, buttons: rangeButtons };
+		const tmpOptions = {
+			...initialOptions,
+			rangeSelector: { ...initialOptions.rangeSelector, buttons: rangeButtons },
+		};
 
 		// const seriesData = []
 

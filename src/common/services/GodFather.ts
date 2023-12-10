@@ -1,6 +1,6 @@
 export interface RangeButton {
 	type: string;
-	count: number;
+	count?: number;
 	text: string;
 }
 export default class GodService {
@@ -9,7 +9,6 @@ export default class GodService {
 		const g = Math.floor(Math.random() * 256);
 		const b = Math.floor(Math.random() * 256);
 
-		// Construct the RGB color string
 		const color = `rgb(${r},${g},${b})`;
 
 		return color;
@@ -33,6 +32,10 @@ export default class GodService {
 					count: 1,
 					text: '1h',
 				},
+				{
+					type: 'all',
+					text: 'All',
+				},
 			];
 		if (tickName === 'PER_DAY')
 			return [
@@ -51,6 +54,10 @@ export default class GodService {
 					count: 1,
 					text: '1w',
 				},
+				{
+					type: 'all',
+					text: 'All',
+				},
 			];
 		if (tickName === 'PER_WEEK')
 			return [
@@ -68,6 +75,10 @@ export default class GodService {
 					type: 'month',
 					count: 1,
 					text: '1mo',
+				},
+				{
+					type: 'all',
+					text: 'All',
 				},
 			];
 		return [];

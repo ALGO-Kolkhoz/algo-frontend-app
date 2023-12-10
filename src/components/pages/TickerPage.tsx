@@ -1,5 +1,5 @@
 import 'highcharts/modules/accessibility';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
@@ -98,6 +98,62 @@ const generateRandomLinearData = () => {
 	}
 
 	return data;
+};
+const initialOptions = {
+	// title, series
+	credits: {
+		enabled: false,
+	},
+	chart: {
+		animation: true,
+		type: 'candlestick',
+		zoomtype: 'x',
+	},
+	xAxis: {
+		type: 'datetime',
+	},
+	tooltip: {
+		shared: true,
+	},
+	plotOptions: {
+		series: {
+			minPointLength: 3,
+			dataGrouping: {
+				enabled: false,
+			},
+		},
+	},
+	yAxis: [
+		{
+			title: {
+				text: 'Цена акции',
+			},
+		},
+		{
+			title: { text: '' },
+			opposite: true,
+		},
+		{
+			title: {
+				text: '',
+			},
+			opposite: true,
+		},
+	],
+	rangeSelector: {
+		selected: 2,
+		inputEnabled: true,
+		enabled: true,
+	},
+
+	navigator: {
+		enabled: true,
+		xAxis: {
+			dateTimeLabelFormats: {
+				day: '%b %e', // Customize the date format on the navigator
+			},
+		},
+	},
 };
 
 const TickerPage = () => {
@@ -214,40 +270,44 @@ const TickerPage = () => {
 			value: 1,
 		},
 		{
-			id: 'PER_10_MIN',
-			label: '10 минутный период',
+			id: 'PER_DAY',
+			label: 'Однодневный период',
 			value: 2,
 		},
 		{
-			id: 'PER_10_MIN',
-			label: '10 минутный период',
+			id: 'PER_WEEK',
+			label: 'Недельный период',
 			value: 3,
 		},
 	];
 	const [leftValue, setLeftValue] = useState<number>(0);
-	const [rightValue, setRightValue] = useState<number>(3);
 	const [searchQuery, setSearchQuery] = useState<string>('');
 
-	const [initialTickTimeObj, setInitialTickTimeObj] = useState({});
+	const [currentTicker, setCurrentTicker] = useState<string>('FIVE');
 
 	const handleLeftChange = (event: React.ChangeEvent<{}>, newValue: number) => {
 		setLeftValue(newValue);
 	};
 
-	const handleRightChange = (
-		event: React.ChangeEvent<{}>,
-		newValue: number
-	) => {
-		setRightValue(newValue);
-	};
+	useEffect(() => {
+		const tickTime = initialObjectsArr[leftValue];
+		const buttons = GodFather.buttonGenerator(tickTime.id);
+
+		const tmpOptions = {
+			...initialOptions,
+			rangeSelector: { ...initialOptions.rangeSelector, buttons },
+		};
+
+		console.log(tmpOptions);
+
+		//series adding
+	});
 
 	const filteredArrList = stocksArr.filter((item) => {
-		{
-			return item.fullName
-				.concat(item.tickerName.replace('$', ''))
-				.toLowerCase()
-				.includes(searchQuery.toLowerCase());
-		}
+		return item.fullName
+			.concat(item.tickerName.replace('$', ''))
+			.toLowerCase()
+			.includes(searchQuery.toLowerCase());
 	});
 
 	return (
@@ -266,6 +326,7 @@ const TickerPage = () => {
 							<div
 								key={nanoid()}
 								className=' flex items-center cursor-pointer '
+								onClick={() => setCurrentTicker(item.tickerName)}
 							>
 								<img
 									src={process.env.PUBLIC_URL + '/img/FIXP.png'}
