@@ -99,8 +99,6 @@ Highcharts.setOptions({
 			'Ноя',
 			'Дек',
 		],
-		// exportButtonTitle: 'Экспорт',
-		// printButtonTitle: 'Печать',
 		rangeSelectorFrom: 'С',
 		rangeSelectorTo: 'По',
 		rangeSelectorZoom: 'Период',

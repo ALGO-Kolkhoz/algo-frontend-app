@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	List,
 	ListItem,
@@ -19,6 +19,7 @@ import HighchartsReact from 'highcharts-react-official';
 import darkUnica from 'highcharts/themes/dark-unica';
 import { options } from '../Recommended/RecommendedPage';
 import { stocksArr, Stock } from '../../../common/stocks';
+import GodFather from '../../../common/services/GodFather';
 
 interface DataSeries {
 	date: Date;
@@ -85,12 +86,56 @@ interface ListItemType {
 	avatar: string;
 }
 
+const initialData = {
+	title: { text: 'Анализ портфеля' },
+	credits: {
+		enabled: false,
+	},
+	rangeSelector: {
+		selected: 2,
+		inputEnabled: true,
+		enabled: true,
+	},
+
+	navigator: {
+		enabled: true,
+		xAxis: {
+			dateTimeLabelFormats: {
+				day: '%b %e', // Customize the date format on the navigator
+			},
+		},
+	},
+	plotOptions: {
+		series: {
+			compare: 'percent',
+			showInNavigator: true,
+			enableMouseTracking: true,
+		},
+	},
+	xAxis: {
+		type: 'datetime',
+	},
+	yAxis: {
+		labels: {
+			format: '{#if (gt value 0)}+{/if}{value}%',
+		},
+		plotLines: [
+			{
+				value: 0,
+				width: 2,
+				color: 'silver',
+			},
+		],
+	},
+	tooltip: {
+		pointFormat:
+			'<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+		valueDecimals: 2,
+		split: true,
+	},
+};
+
 const SplitPage = () => {
-	const initialList1: { label: string; avatar: string }[] = [
-		{ label: 'Item 1', avatar: 'A' },
-		{ label: 'Item 2', avatar: 'B' },
-		{ label: 'Item 3', avatar: 'C' },
-	];
 	const [list1, setList1] = useState<typeof stocksArr>(stocksArr);
 	const [list2, setList2] = useState<typeof stocksArr>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
@@ -126,6 +171,14 @@ const SplitPage = () => {
 	const [strategyTabState, setStrategyTabState] = useState(0);
 
 	const tickTimeArr = ['PER_10_MIN', 'PER_DAY', 'PER_WEEK'];
+
+	useEffect(() => {
+		const tickTime = tickTimeArr[strategyTabState];
+
+		const buttons = GodFather.buttonGenerator(tickTime);
+
+		const tickNames = list2.map((i) => i.tickerName).toString();
+	});
 
 	return (
 		<div className='flex flex-1 h-screen'>
@@ -211,7 +264,13 @@ const SplitPage = () => {
 								<Chip
 									label={item.fullName}
 									color='primary'
-									avatar={<Avatar>{item.image}</Avatar>}
+									avatar={
+										<Avatar>
+											<img
+												src={process.env.PUBLIC_URL + '/img/' + item.image}
+											/>
+										</Avatar>
+									}
 									style={{ color: 'white' }}
 								/>
 								<IconButton
@@ -232,7 +291,7 @@ const SplitPage = () => {
 						updateArgs={[true, true, true]}
 						containerProps={{ className: 'chartContainer' }}
 					/>
-					<HighchartsReact
+					{/* <HighchartsReact
 						highcharts={Highcharts}
 						options={options}
 						updateArgs={[true, true, true]}
@@ -243,7 +302,7 @@ const SplitPage = () => {
 						options={options}
 						updateArgs={[true, true, true]}
 						containerProps={{ className: 'chartContainer' }}
-					/>
+					/> */}
 				</div>
 			</div>
 		</div>
