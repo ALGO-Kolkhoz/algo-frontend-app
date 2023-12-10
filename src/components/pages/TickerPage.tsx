@@ -159,7 +159,7 @@ const initialOptions = {
 const TickerPage = () => {
 	const options = {
 		title: {
-			text: 'График свечей',
+			text: 'График свечей акции',
 		},
 		credits: {
 			enabled: false,

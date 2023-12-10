@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const WelcomePage = () => {
 	const actions = [
 		{ action: 'Средневзвешенная', profitability: 10 },
-		{ action: 'Action B', profitability: -5 },
-		{ action: 'Action C', profitability: 20 },
+		{ action: 'Агрессивная', profitability: -5 },
+		{ action: 'Консервативная', profitability: 20 },
 	];
 
 	const navigate = useNavigate();
