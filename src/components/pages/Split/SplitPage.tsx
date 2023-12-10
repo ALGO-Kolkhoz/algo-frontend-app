@@ -287,7 +287,7 @@ const SplitPage = () => {
 				<div className='text-center '>
 					<HighchartsReact
 						highcharts={Highcharts}
-						options={options}
+						options={{ ...options, title: { text: 'Акции в портфеле' } }}
 						updateArgs={[true, true, true]}
 						containerProps={{ className: 'chartContainer' }}
 					/>
