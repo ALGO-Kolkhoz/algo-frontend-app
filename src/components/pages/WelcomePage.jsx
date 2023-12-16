@@ -92,7 +92,7 @@ const WelcomePage = () => {
 											: 'text-red-500'
 									}`}
 								>
-									Profitability: {action.profitability}%{' '}
+									Доходность: {action.profitability}%{' '}
 									{action.profitability > 0 ? (
 										<FontAwesomeIcon
 											icon={faArrowUp}

@@ -207,7 +207,7 @@ const SplitPage = () => {
 										avatar={
 											<Avatar>
 												<img
-													src={process.env.PUBLIC_URL + '/img/' + item.image}
+													src={process.env.PUBLIC_URL + '/images/' + item.image}
 												/>
 											</Avatar>
 										}
@@ -252,10 +252,9 @@ const SplitPage = () => {
 				{/* <div className='flex-1/3 p-4 bg-gray-500'></div> */}
 				<div className='flex-1/3 p-4 bg-gray-500'>
 					<Box display='flex' flexDirection='row'>
-						<Chip
-							label='Портфель: '
-							style={{ marginRight: '8px', marginLeft: '8px' }}
-						/>
+						<div style={{ marginRight: '8px', marginLeft: '8px' }}>
+							Портфель:{' '}
+						</div>
 						{list2.map((item, index) => (
 							<div
 								key={index}

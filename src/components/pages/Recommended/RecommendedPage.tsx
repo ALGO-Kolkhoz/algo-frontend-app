@@ -191,7 +191,7 @@ export const options = {
 				valueDecimals: 2,
 			},
 			color: GodFather.randomColorGenerator(),
-			colorAxis: 'pink',
+			colorAxis: '#66FF00',
 			cursor: 'cell',
 			marker: {
 				enabled: false,
@@ -207,7 +207,7 @@ export const options = {
 				valueDecimals: 2,
 			},
 			color: GodFather.randomColorGenerator(),
-			colorAxis: 'green',
+			colorAxis: '#03C03C',
 			cursor: 'cell',
 			marker: {
 				enabled: false,
