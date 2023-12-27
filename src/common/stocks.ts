@@ -134,6 +134,7 @@ export const stocksArr: Stock[] = [
 		tickerName: 'SBER',
 		fullName: 'Сбербанк',
 	},
+	//some comment
 	{
 		image: 'KUZB.png',
 		tickerName: 'KUZB',
