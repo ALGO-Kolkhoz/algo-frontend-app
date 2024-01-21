@@ -5,15 +5,15 @@ const AdvancedBar = () => {
 	const navigate = useNavigate();
 	return (
 		<div className='bg-gray-800 text-white p-4 flex items-center justify-between'>
-			<div className='flex items-center'>
-				<div
-					className='mr-4 cursor-pointer'
-					onClick={() => {
-						navigate('/');
-					}}
-				>
-					Kolkhoz Inc.
-				</div>
+			<div
+				className='mr-4 cursor-pointer text-yellow-300 font-bold text-lg'
+				onClick={() => {
+					navigate('/');
+				}}
+			>
+				Kolkhoz Inc.
+			</div>
+			<div className='flex items-center text-lg'>
 				<div
 					className='mr-4 cursor-pointer'
 					onClick={() => {
